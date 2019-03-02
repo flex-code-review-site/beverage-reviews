@@ -21,6 +21,10 @@ public class JpaMappingsTest {
 
 	@Resource
 	private CategoryRepository categoryRepo;
+	
+	@Resource
+	private TagRepository tagRepo;
+	
 	@Resource
 	private TestEntityManager entityManager;
 
@@ -38,4 +42,17 @@ public class JpaMappingsTest {
 		assertThat(alcoholic.getName(), is("Alcoholic"));
 	}
 
+	@Test
+	public void shouldSaveAndLoadATag() {
+		Tag hot = new Tag("Hot");
+		tagRepo.save(hot);
+		Long hotId = hot.getId();
+		
+		entityManager.flush();// force jpa to hit the db when we try to find it
+		entityManager.clear();
+		
+		Optional<Tag> tagToFind = tagRepo.findById(hotId);
+		hot = tagToFind.get();
+		assertThat(hot.getName(), is("Hot"));
+	}
 }
