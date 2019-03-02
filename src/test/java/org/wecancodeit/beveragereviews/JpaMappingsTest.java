@@ -2,7 +2,9 @@ package org.wecancodeit.beveragereviews;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 
+import java.util.Collection;
 import java.util.Optional;
 
 import javax.annotation.Resource;
@@ -25,13 +27,13 @@ public class JpaMappingsTest {
 
 	@Resource
 	private CategoryRepository categoryRepo;
-	
+
 	@Resource
 	private TagRepository tagRepo;
-	
+
 	@Resource
 	private ReviewRepository reviewRepo;
-	
+
 	@Resource
 	private TestEntityManager entityManager;
 
@@ -54,15 +56,15 @@ public class JpaMappingsTest {
 		Tag hot = new Tag("Hot");
 		tagRepo.save(hot);
 		Long hotId = hot.getId();
-		
+
 		entityManager.flush();// force jpa to hit the db when we try to find it
 		entityManager.clear();
-		
+
 		Optional<Tag> tagToFind = tagRepo.findById(hotId);
 		hot = tagToFind.get();
 		assertThat(hot.getName(), is("Hot"));
 	}
-	
+
 	@Test
 	public void shouldHaveNameDescriptionAndCategoryInReview() {
 		Category nonAlcoholic = new Category("Non-Alcoholic");
@@ -73,11 +75,37 @@ public class JpaMappingsTest {
 
 		entityManager.flush();// force jpa to hit the db when we try to find it
 		entityManager.clear();
-		
+
 		Optional<Review> reviewToFind = reviewRepo.findById(coffeeId);
 		coffee = reviewToFind.get();
 		assertThat(coffee.getName(), is("Coffee"));
 	}
-	
-	
+
+	@Test
+	public void shouldFindNonAlcoholicReviews() {
+		Category nonAlcoholic = new Category("Non-Alcoholic");
+		categoryRepo.save(nonAlcoholic);
+		Review coffee = new Review("Coffee", "Black as my soul", nonAlcoholic);
+		reviewRepo.save(coffee);
+
+		Review tea = new Review("Tea", "Sweet as my soul ", nonAlcoholic);
+		reviewRepo.save(tea);
+
+		Category alcoholic = new Category("Alcoholic");
+		categoryRepo.save(alcoholic);
+
+		Review moonshine = new Review("Moonshine", "Redneck as my soul ", alcoholic);
+		reviewRepo.save(moonshine);
+
+		entityManager.flush();// force jpa to hit the db when we try to find it
+		entityManager.clear();
+
+		Long nonAlcoholicId = nonAlcoholic.getId();
+		Optional<Category> categoryToFind = categoryRepo.findById(nonAlcoholicId);
+		nonAlcoholic = categoryToFind.get();
+
+		Collection<Review> foundReviews = nonAlcoholic.getReviews();
+		assertThat(foundReviews, containsInAnyOrder(coffee, tea));
+	}
+
 }
