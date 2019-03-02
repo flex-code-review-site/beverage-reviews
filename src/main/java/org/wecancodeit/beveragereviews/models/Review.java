@@ -1,11 +1,9 @@
-package org.wecancodeit.beveragereviews;
+package org.wecancodeit.beveragereviews.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-
-import org.wecancodeit.beveragereviews.models.Category;
 
 @Entity
 public class Review {
