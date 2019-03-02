@@ -1,4 +1,4 @@
-package org.wecancodeit.beveragereviews;
+package org.wecancodeit.beveragereviews.controllers;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -12,6 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.ui.Model;
+import org.wecancodeit.beveragereviews.controllers.CategoryController;
 import org.wecancodeit.beveragereviews.models.Category;
 import org.wecancodeit.beveragereviews.repositories.CategoryRepository;
 
