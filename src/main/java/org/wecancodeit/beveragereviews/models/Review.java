@@ -1,8 +1,13 @@
 package org.wecancodeit.beveragereviews.models;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -15,6 +20,8 @@ public class Review {
 	private String description;
 	@ManyToOne
 	private Category category;
+	@ManyToMany
+	private Collection<Tag> tags;
 	
 	public Long getId() {
 		return id;
@@ -31,15 +38,19 @@ public class Review {
 	public Category getCategory() {
 		return category;
 	}
+	public Collection<Tag> getTags() {
+		return tags;
+	}
 
 	protected Review() {//Whyyy????
 		
 	}
 	
-	public Review(String name, String description, Category category) {
+	public Review(String name, String description, Category category, Tag...tags) {
 		this.name = name;
 		this.description = description;
 		this.category = category;
+		this.tags = new HashSet<>(Arrays.asList(tags));
 	}
 
 	@Override
@@ -66,6 +77,7 @@ public class Review {
 			return false;
 		return true;
 	}
+
 	
 	
 
