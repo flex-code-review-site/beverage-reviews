@@ -107,7 +107,7 @@ public class JpaMappingsTest {
 		Collection<Review> foundReviews = nonAlcoholic.getReviews();
 		assertThat(foundReviews, containsInAnyOrder(coffee, tea));
 	}
-	
+
 	@Test
 	public void shouldBeAbleToFindAllReviewsByTag() {
 		Category nonAlcoholic = new Category("Non-Alcoholic");
@@ -116,24 +116,25 @@ public class JpaMappingsTest {
 		tagRepo.save(hot);
 		Tag cold = new Tag("cold");
 		tagRepo.save(cold);
-		
-		Review coffee = new Review("Coffee", "Black as my soul", nonAlcoholic,hot);
+
+		Review coffee = new Review("Coffee", "Black as my soul", nonAlcoholic, hot);
 		reviewRepo.save(coffee);
 
 		Review tea = new Review("Tea", "Sweet as my soul ", nonAlcoholic, hot, cold);
 		reviewRepo.save(tea);
-		
+
 		entityManager.flush();// force jpa to hit the db when we try to find it
 		entityManager.clear();
-		
+
 		Long hotId = hot.getId();
 		Optional<Tag> tagToFind = tagRepo.findById(hotId);
 		hot = tagToFind.get();
 
 		Collection<Review> foundReviews = hot.getReviews();
 		assertThat(foundReviews, containsInAnyOrder(coffee, tea));
-		
+
 	}
+
 	@Test
 	public void shouldBeAbleToFindAllTagsByReview() {
 		Category nonAlcoholic = new Category("Non-Alcoholic");
@@ -145,17 +146,17 @@ public class JpaMappingsTest {
 
 		Review tea = new Review("Tea", "Sweet as my soul ", nonAlcoholic, hot, cold);
 		reviewRepo.save(tea);
-		
+
 		entityManager.flush();// force jpa to hit the db when we try to find it
 		entityManager.clear();
-		
+
 		Long teaId = tea.getId();
 		Optional<Review> reviewToFind = reviewRepo.findById(teaId);
 		tea = reviewToFind.get();
 
 		Collection<Tag> foundTags = tea.getTags();
 		assertThat(foundTags, containsInAnyOrder(hot, cold));
-		
+
 	}
 
 }

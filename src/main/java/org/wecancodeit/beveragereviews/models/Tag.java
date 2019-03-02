@@ -14,8 +14,8 @@ public class Tag {
 	@GeneratedValue
 	private Long id;
 	private String name;
-	
-	@ManyToMany(mappedBy ="tags")
+
+	@ManyToMany(mappedBy = "tags")
 	private Collection<Review> reviews;
 
 	public Long getId() {
@@ -35,7 +35,7 @@ public class Tag {
 	}
 
 	public Collection<Review> getReviews() {
-		
+
 		return reviews;
 	}
 
