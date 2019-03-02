@@ -1,4 +1,4 @@
-package org.wecancodeit.beveragereviews;
+package org.wecancodeit.beveragereviews.controllers;
 
 import org.springframework.ui.Model;
 import org.wecancodeit.beveragereviews.repositories.CategoryRepository;
