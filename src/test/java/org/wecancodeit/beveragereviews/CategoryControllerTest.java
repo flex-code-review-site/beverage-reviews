@@ -19,31 +19,31 @@ public class CategoryControllerTest {
 
 	@InjectMocks
 	private CategoryController underTest;
-	
+
 	@Mock
 	private Category catone;
-	
+
 	@Mock
 	private Category cattwo;
-	
+
 	@Mock
 	private Model model;
-	
+
 	@Mock
 	private CategoryRepository categoryRepo;
-	
+
 	@Before
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
 	}
-	
+
 	@Test
 	public void shouldAddAllCategoriesToModel() {
-		Collection<Category> allCategories = Arrays.asList(catone,cattwo);
+		Collection<Category> allCategories = Arrays.asList(catone, cattwo);
 		when(categoryRepo.findAll()).thenReturn(allCategories);
-		
+
 		underTest.findAllCategories(model);
 		verify(model).addAttribute("categories", allCategories);
-		
+
 	}
 }

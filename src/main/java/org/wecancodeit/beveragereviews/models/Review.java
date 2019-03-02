@@ -22,7 +22,7 @@ public class Review {
 	private Category category;
 	@ManyToMany
 	private Collection<Tag> tags;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -38,15 +38,16 @@ public class Review {
 	public Category getCategory() {
 		return category;
 	}
+
 	public Collection<Tag> getTags() {
 		return tags;
 	}
 
-	protected Review() {//Whyyy????
-		
+	protected Review() {// Whyyy????
+
 	}
-	
-	public Review(String name, String description, Category category, Tag...tags) {
+
+	public Review(String name, String description, Category category, Tag... tags) {
 		this.name = name;
 		this.description = description;
 		this.category = category;
@@ -77,8 +78,5 @@ public class Review {
 			return false;
 		return true;
 	}
-
-	
-	
 
 }
