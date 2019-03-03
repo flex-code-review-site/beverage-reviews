@@ -5,6 +5,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -45,6 +46,16 @@ public class CategoryControllerTest {
 
 		underTest.findAllCategories(model);
 		verify(model).addAttribute("categories", allCategories);
-
+		
 	}
+	
+	@Test
+	public void shouldAddOneCategoryToModel() {
+		when(categoryRepo.findById(1L)).thenReturn(Optional.of(catone));
+		
+		underTest.findOneCategory(1L, model);
+		verify(model).addAttribute("category", catone);
+	}
+	
+	
 }
