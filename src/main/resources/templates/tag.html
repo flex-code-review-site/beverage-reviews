@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title> One Tag </title>
+        <title> Tag </title>
     </head>
     <body>
-        <h1> Tag </h1>
+    	<div th:each ="tag:${tags}">
+        <h1 th:text ="${tag.name}"></h1>
+        <div class="listOfReviewsForTag" th:each ="review: ${tags.reviews}">
+        	<p><a th:text ="${review.name}" th:href="@{/review(id=${review.id})}"></a></p>
+        </div>
+        </div>
+        <a href="http://localhost:8080/tags"><p>Back to list of Tags</p></a>
     </body>
 </html>
