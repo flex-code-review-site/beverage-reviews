@@ -18,6 +18,10 @@ public class Tag {
 	@ManyToMany(mappedBy = "tags")
 	private Collection<Review> reviews;
 
+	public Collection<Review> getReviews() {		
+		return reviews;
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -34,10 +38,6 @@ public class Tag {
 		this.name = name;
 	}
 
-	public Collection<Review> getReviews() {
-
-		return reviews;
-	}
 
 	@Override
 	public int hashCode() {
