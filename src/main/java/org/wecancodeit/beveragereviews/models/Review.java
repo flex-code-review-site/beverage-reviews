@@ -22,6 +22,7 @@ public class Review {
 	private Category category;
 	@ManyToMany
 	private Collection<Tag> tags;
+	private String imageAddress;
 
 	public Long getId() {
 		return id;
@@ -42,6 +43,10 @@ public class Review {
 	public Collection<Tag> getTags() {
 		return tags;
 	}
+	public String getImageAddress() {
+		
+		return imageAddress;
+	}
 
 	protected Review() {// Whyyy????
 
@@ -51,6 +56,14 @@ public class Review {
 		this.name = name;
 		this.description = description;
 		this.category = category;
+		this.tags = new HashSet<>(Arrays.asList(tags));
+	}
+
+	public Review(String name, String description, Category category, String imageAddress, Tag... tags) {
+		this.name = name;
+		this.description = description;
+		this.category = category;
+		this.imageAddress = imageAddress;
 		this.tags = new HashSet<>(Arrays.asList(tags));
 	}
 
@@ -78,5 +91,6 @@ public class Review {
 			return false;
 		return true;
 	}
+
 
 }
