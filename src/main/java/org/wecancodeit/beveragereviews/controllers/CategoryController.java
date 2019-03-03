@@ -17,9 +17,12 @@ public class CategoryController {
 	@Resource
 	private CategoryRepository categoryRepo;
 	
+
+	
 	@RequestMapping("/categories")
 	public String findAllCategories(Model model) {
 		model.addAttribute("categories", categoryRepo.findAll());
+		
 		return "categories";
 	}
 
@@ -28,7 +31,7 @@ public class CategoryController {
 		Optional<Category> category = categoryRepo.findById(id);
 		if (category.isPresent()) {
 			model.addAttribute("category", category.get());
-
+			model.addAttribute("reviews", category.get().getReviews());
 		}
 		return "category";
 

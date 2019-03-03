@@ -5,5 +5,15 @@
 </head>
 <body>
 	<h1>Categories</h1>
+	<div th:each ="category:${categories}">
+		<h2>
+			<a th:href="@{/category(id=${category.id})}" th:text = "${category.name}"></a>
+		</h2>
+		<div th:each ="review:${category.reviews}">
+			<a th:href="@{/review(id=${review.id})}" th:text = "${review.name}">	
+			</a>
+		</div>
+	</div>	
+				
 </body>
 </html>
