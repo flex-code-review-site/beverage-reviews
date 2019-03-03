@@ -1,3 +1,4 @@
+package org.wecancodeit.beveragereviews;
 import javax.annotation.Resource;
 
 import org.springframework.boot.CommandLineRunner;
