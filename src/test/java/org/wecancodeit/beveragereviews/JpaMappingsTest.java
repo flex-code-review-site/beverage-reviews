@@ -158,5 +158,20 @@ public class JpaMappingsTest {
 		assertThat(foundTags, containsInAnyOrder(hot, cold));
 
 	}
+	
+	@Test
+	public void shouldBeAbleToSaveAndFindImageAddress() {
+		Category nonAlcoholic = new Category("Non-Alcoholic");
+		categoryRepo.save(nonAlcoholic);
+		Review coffee = new Review("Coffee", "Black as my soul", nonAlcoholic, "Image Address");
+		reviewRepo.save(coffee);
+		Long coffeeId = coffee.getId();
+
+		entityManager.flush();// force jpa to hit the db when we try to find it
+		entityManager.clear();
+
+		String image = reviewRepo.findById(coffeeId).get().getImageAddress();
+		assertThat(image, is("Image Address"));
+	}
 
 }
