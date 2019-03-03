@@ -37,7 +37,7 @@ public class CategoryControllerMvcTest {
 	
 	@Mock
 	private Category category2;
-	
+		
 	@Test
 	public void shouldBeOkForSingleCategory() throws Exception {
 		long id = 1;
@@ -58,4 +58,6 @@ public class CategoryControllerMvcTest {
 		when(categoryRepo.findAll()).thenReturn(categories);
 		mvc.perform(get("/categories")).andExpect(view().name(is("categories")));
 	}
+	
+	
 }

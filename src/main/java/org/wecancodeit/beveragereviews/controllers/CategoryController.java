@@ -28,7 +28,6 @@ public class CategoryController {
 		Optional<Category> category = categoryRepo.findById(id);
 		if (category.isPresent()) {
 			model.addAttribute("category", category.get());
-
 		}
 		return "category";
 
