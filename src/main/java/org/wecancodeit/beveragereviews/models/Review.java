@@ -48,7 +48,7 @@ public class Review {
 		return imageAddress;
 	}
 
-	protected Review() {// Whyyy????
+	protected Review() {// Whyyy???? //default constructor required for entities
 
 	}
 

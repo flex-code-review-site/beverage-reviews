@@ -32,13 +32,13 @@ public class ReviewPopulator implements CommandLineRunner{
 		Tag caffeinated = tagRepo.save(new Tag ("Caffeinated"));
 		Tag nonCaffeinated = tagRepo.save(new Tag ("Non-Caffeinated"));
 		
-		Review coffee = new Review("Coffee", "Black as my soul", nonAlcoholic, hot, caffeinated);
+		Review coffee = new Review("Coffee", "Black as my soul", nonAlcoholic,"./images/coffee.jpg", hot, caffeinated);
 		coffee = reviewRepo.save(coffee);
-		Review tea = new Review("Tea", "Sweet as my soul", nonAlcoholic, hot, caffeinated);
+		Review tea = new Review("Tea", "Sweet as my soul", nonAlcoholic,"./images/tea.jpg", hot, caffeinated);
 		tea = reviewRepo.save(tea);
-		Review moonshine = new Review ("Moonshine", "Red neck as my soul", alcoholic, cold, nonCaffeinated);
+		Review moonshine = new Review ("Moonshine", "Red neck as my soul", alcoholic,"./images/moonshine.jpg", cold, nonCaffeinated);
 		moonshine = reviewRepo.save(moonshine);
-		Review wine = new Review ("Wine", "Sassy as my soul", alcoholic, cold, nonCaffeinated);
+		Review wine = new Review ("Wine", "Sassy as my soul", alcoholic,"./images/tea.jpg", cold, nonCaffeinated);
 		wine = reviewRepo.save(wine);
 		
 	}
