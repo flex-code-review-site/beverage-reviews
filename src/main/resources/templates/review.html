@@ -8,13 +8,16 @@
 
 	<div th:each = "reviews: ${review}">
 	    <img th:src = "${review.imageAddress}">
-		<p th:text = "${review.name}"></p>
 		<p th:text = "${review.description}"></p>
-		<a th:text = "${review.category.name}"></a>
-		<ul th:each = "tag: ${review.tags}">
-			<li th:text = "${tag.name}"></li>
-		</ul>
-
+		<hr></hr>
+		<h2>Category</h2>
+		<a th:href = "@{/category(id=${review.category.id})}"th:text = "${review.category.name}"></a>
+		<hr></hr>
+		<h2>Tags</h2>
+		<div id = "tags" th:each = "tag: ${review.tags}">
+			<a th:href = "@{/tag(id=${tag.id})}" th:text = "${tag.name}"></a>
+		</div>
+        <hr></hr>
 		<a href="http://localhost:8080/reviews">Home</a>
 </body>
 </html>
