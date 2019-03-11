@@ -1,3 +1,4 @@
+
 package org.wecancodeit.beveragereviews.controllers;
 
 import org.springframework.http.HttpStatus;
@@ -10,3 +11,5 @@ public class CategoryNotFoundException extends Exception {
     
 	
 }
+
+
