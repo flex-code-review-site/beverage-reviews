@@ -5,4 +5,6 @@ import org.wecancodeit.beveragereviews.models.Category;
 
 public interface CategoryRepository extends CrudRepository<Category, Long> {
 
+	Category findByName(String category);
+
 }

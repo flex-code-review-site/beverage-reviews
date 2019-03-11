@@ -5,6 +5,8 @@ import org.wecancodeit.beveragereviews.models.Review;
 
 public interface ReviewRepository extends CrudRepository<Review, Long> {
 
+	Review findByName(String name);
+
 }
 
 
