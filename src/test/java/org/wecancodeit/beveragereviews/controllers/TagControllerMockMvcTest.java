@@ -67,7 +67,7 @@ public class TagControllerMockMvcTest {
 		
 	}
 	@Test
-	public void shouldPutOnTagIntoModel() throws Exception{
+	public void shouldPutOneTagIntoModel() throws Exception{
 		long tagId = 1;
 		when(tagRepo.findById(tagId)).thenReturn(Optional.of(hot));
 		
