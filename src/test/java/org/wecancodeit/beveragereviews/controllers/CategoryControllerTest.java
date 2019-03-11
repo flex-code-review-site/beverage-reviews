@@ -50,7 +50,7 @@ public class CategoryControllerTest {
 	}
 	
 	@Test
-	public void shouldAddOneCategoryToModel() {
+	public void shouldAddOneCategoryToModel() throws CategoryNotFoundException {
 		when(categoryRepo.findById(1L)).thenReturn(Optional.of(catone));
 		
 		underTest.findOneCategory(1L, model);
