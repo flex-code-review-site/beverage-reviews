@@ -34,13 +34,13 @@ public class ReviewController {
 	}
 
 	@RequestMapping("/review")
-	public String findOneReview(@RequestParam(value = "id")long id, Model model) {
+	public String findOneReview(@RequestParam(value = "id")long id, Model model) throws ReviewNotFoundException {
 		Optional<Review> review = reviewRepo.findById(id);
 		if (review.isPresent()) {
-			model.addAttribute("review", review.get());
+			model.addAttribute("reviews", review.get());
 			return "review";
 		}
-			return null;
+	    throw new ReviewNotFoundException();
 	}
     
 	@RequestMapping("/add-review")

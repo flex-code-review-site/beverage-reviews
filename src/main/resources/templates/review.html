@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html xmlns: th="http://www.thymeleaf.org">
 <head>
-	<title th:text = "${review.name}"></title>
+	<title></title>
 </head>
 <body>
-	<h1 th:text = "${review.name}"></h1>
-
 	<div th:each = "reviews: ${review}">
+	    <h1 th:text = "${review.name}"></h1>
 	    <img th:src = "${review.imageAddress}">
 		<p th:text = "${review.description}"></p>
 		<hr></hr>
