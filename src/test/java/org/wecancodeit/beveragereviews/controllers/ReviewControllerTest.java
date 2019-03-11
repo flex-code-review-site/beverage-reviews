@@ -58,7 +58,7 @@ public class ReviewControllerTest {
 
 	}
 	@Test 
-	public void shouldAddOneReviewToModel() {
+	public void shouldAddOneReviewToModel() throws ReviewNotFoundException {
 		Long arbitraryId = 1L;
 		when(reviewRepo.findById(arbitraryId)).thenReturn(Optional.of(review1));
 		
