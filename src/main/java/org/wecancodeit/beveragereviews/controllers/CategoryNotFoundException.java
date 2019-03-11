@@ -7,5 +7,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class CategoryNotFoundException extends Exception {
 
 	private static final long serialVersionUID = -5672898804549428389L;
-
+    
+	
 }
