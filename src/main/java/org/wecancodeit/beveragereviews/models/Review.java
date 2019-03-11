@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Review {
@@ -23,6 +24,8 @@ public class Review {
 	@ManyToMany
 	private Collection<Tag> tags;
 	private String imageAddress;
+	@OneToMany(mappedBy= "review")
+	private Collection<Comment> comments;
 
 	public Long getId() {
 		return id;
@@ -46,6 +49,9 @@ public class Review {
 	public String getImageAddress() {
 		
 		return imageAddress;
+	}
+	public Collection<Comment> getComments() {
+		return comments;
 	}
 
 	protected Review() {// Whyyy???? //default constructor required for entities
@@ -91,6 +97,7 @@ public class Review {
 			return false;
 		return true;
 	}
+
 
 
 }

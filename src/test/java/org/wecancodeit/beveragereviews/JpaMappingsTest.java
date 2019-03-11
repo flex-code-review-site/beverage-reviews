@@ -1,6 +1,7 @@
 package org.wecancodeit.beveragereviews;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 
@@ -15,11 +16,13 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.wecancodeit.beveragereviews.models.Category;
+import org.wecancodeit.beveragereviews.models.Comment;
 import org.wecancodeit.beveragereviews.models.Review;
 import org.wecancodeit.beveragereviews.models.Tag;
 import org.wecancodeit.beveragereviews.repositories.CategoryRepository;
 import org.wecancodeit.beveragereviews.repositories.ReviewRepository;
 import org.wecancodeit.beveragereviews.repositories.TagRepository;
+import org.wecancodeit.beveragereviews.repositories.CommentRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @DataJpaTest
@@ -36,6 +39,9 @@ public class JpaMappingsTest {
 
 	@Resource
 	private TestEntityManager entityManager;
+	
+	@Resource
+	private CommentRepository commentRepo;
 
 	@Test
 	public void shouldSaveAndLoadACategory() {
@@ -156,7 +162,6 @@ public class JpaMappingsTest {
 
 		Collection<Tag> foundTags = tea.getTags();
 		assertThat(foundTags, containsInAnyOrder(hot, cold));
-
 	}
 	
 	@Test
@@ -173,5 +178,47 @@ public class JpaMappingsTest {
 		String image = reviewRepo.findById(coffeeId).get().getImageAddress();
 		assertThat(image, is("Image Address"));
 	}
+	
+	@Test
+	public void shouldSaveAndLoadAComment() {
+		Category nonAlcoholic = new Category("Non-Alcoholic");
+		categoryRepo.save(nonAlcoholic);
+		Review coffee = new Review("Coffee", "Black as my soul", nonAlcoholic, "Image Address");
+		reviewRepo.save(coffee);
+		Comment comment1 = new Comment("tasted burnt", coffee);
+		commentRepo.save(comment1);
+		Long comment1Id = comment1.getId();
 
+		entityManager.flush();
+		entityManager.clear();
+
+		Optional<Comment> commentToFind = commentRepo.findById(comment1Id);
+		comment1 = commentToFind.get();
+		assertThat(comment1.getContent(), is("tasted burnt"));
+	}
+	
+	@Test
+	public void shouldReturnAllCommentsForAReview() {
+		Category nonAlcoholic = new Category("Non-Alcoholic");
+		categoryRepo.save(nonAlcoholic);
+		Review coffee = new Review("Coffee", "Black as my soul", nonAlcoholic, "Image Address");
+		reviewRepo.save(coffee);
+		Review tea = new Review("Tea", "Sweet as my soul ", nonAlcoholic, "image address");
+		reviewRepo.save(tea);
+		Comment comment1 = new Comment("tasted burnt", coffee);
+		commentRepo.save(comment1);
+		Comment comment2 = new Comment("nice and hot", coffee);
+		commentRepo.save(comment2);
+		Comment comment3 = new Comment("less caffine", tea);
+		commentRepo.save(comment3);
+		Long coffeeId = coffee.getId();
+		
+		entityManager.flush();
+		entityManager.clear();
+		
+		coffee = reviewRepo.findById(coffeeId).get();
+		Collection<Comment> comments = coffee.getComments();
+		assertThat(comments, containsInAnyOrder(comment1, comment2));
+		assertThat(comments, not(containsInAnyOrder(comment3)) );
+	}
 }
