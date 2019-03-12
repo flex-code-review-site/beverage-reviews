@@ -19,6 +19,12 @@
 		<h2>Comments</h2>
 	    <div th:each = "comment: ${review.comments}">
 			<p th:text = "${comment.content}"></a>
+			<form method = "POST">
+				<div>
+					<input type = "hidden" name = "commentId" th:value = "${comment.id}"/>
+					<button th:formaction="@{delete-comment}">Delete Comment</button>
+				</div>
+			</form>
 			<br></br>
 		</div>
 		<form method="POST">

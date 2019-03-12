@@ -1,5 +1,6 @@
 package org.wecancodeit.beveragereviews.controllers;
 
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.Optional;
@@ -43,10 +44,11 @@ public class CommentControllerTest {
 		when(commentRepo.save(newComment)).thenReturn(newComment);
 	}
 	
-//	@Test
-//	public void shouldRemoveCommentFromReviewById() {
-//		Long commentId = comment.getId();
-//		when(commentRepo.findById(commentId)).thenReturn(Optional.of(comment));
-//		underTest.deleteCommentById(commentId);
-//	}
+	@Test
+	public void shouldRemoveCommentFromReviewById() {
+		Long commentId = comment.getId();
+		when(commentRepo.findById(commentId)).thenReturn(Optional.of(comment));
+		underTest.deleteCommentById(commentId);
+		verify(commentRepo).delete(comment);
+	}
 }
