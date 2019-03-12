@@ -5,4 +5,8 @@ import org.wecancodeit.beveragereviews.models.Comment;
 
 public interface CommentRepository extends CrudRepository<Comment, Long> {
 
+	Comment findByContent(String content);
+
+
+
 }

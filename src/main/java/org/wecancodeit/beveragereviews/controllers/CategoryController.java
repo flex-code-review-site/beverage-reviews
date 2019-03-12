@@ -30,7 +30,7 @@ public class CategoryController {
 	public String findOneCategory(@RequestParam(value = "id")long id, Model model) throws CategoryNotFoundException {
 		Optional<Category> category = categoryRepo.findById(id);
 		if (category.isPresent()) {
-			model.addAttribute("categories", category.get());
+			model.addAttribute("category", category.get());
 			model.addAttribute("reviews", category.get().getReviews());
 			return "category";
 		}
