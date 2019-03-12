@@ -45,7 +45,7 @@ public class ReviewPopulator implements CommandLineRunner {
 		Review moonshine = new Review("Moonshine", "Red neck as my soul", alcoholic, "./images/moonshine.jpg", cold,
 				nonCaffeinated);
 		moonshine = reviewRepo.save(moonshine);
-		Review wine = new Review("Wine", "Sassy as my soul", alcoholic, "./images/tea.jpg", cold, nonCaffeinated);
+		Review wine = new Review("Wine", "Sassy as my soul", alcoholic, "./images/wine.jpg", cold, nonCaffeinated);
 		wine = reviewRepo.save(wine);
 
 		Comment comment1 = new Comment(
