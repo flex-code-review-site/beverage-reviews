@@ -12,6 +12,12 @@
 			<a th:href="@{/review(id=${review.id})}" th:text="${review.name}"></a>
 		</li>
 	</div>
+	<hr></hr>
+	<form method = "GET">
+      <div>
+         <button th:formaction = "@{/sorted-reviews}">Sort</button>
+      </div>
+   </form>
 
 </body>
 </html>

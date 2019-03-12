@@ -69,5 +69,13 @@ public class ReviewController {
 
 		return "redirect:/reviews";
 	}
+	
+	@RequestMapping("/sorted-reviews")
+	public String sortReviews(Model model){
+		
+		model.addAttribute("reviews",reviewRepo.findAllByOrderByName());
+	    
+		return "reviews";
+	}
 
 }
