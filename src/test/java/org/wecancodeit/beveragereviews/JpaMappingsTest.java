@@ -3,6 +3,7 @@ package org.wecancodeit.beveragereviews;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 
 import java.util.Collection;
@@ -220,5 +221,23 @@ public class JpaMappingsTest {
 		Collection<Comment> comments = coffee.getComments();
 		assertThat(comments, containsInAnyOrder(comment1, comment2));
 		assertThat(comments, not(containsInAnyOrder(comment3)) );
+	}
+	
+	@Test 
+	public void shouldSortReviewsByName(){
+		Category nonAlcoholic = new Category("Non-Alcoholic");
+		categoryRepo.save(nonAlcoholic);
+		Review coffee = new Review("Coffee", "Black as my soul", nonAlcoholic, "Image Address");
+		reviewRepo.save(coffee);
+		Review tea = new Review("Tea", "Sweet as my soul ", nonAlcoholic, "image address");
+		reviewRepo.save(tea);
+		
+		entityManager.flush();
+		entityManager.clear();
+		
+		Collection<Review> sortedReviews = reviewRepo.findAllByOrderByName();
+		assertThat(sortedReviews,contains(coffee,tea));
+		
+	
 	}
 }
