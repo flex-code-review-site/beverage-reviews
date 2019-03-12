@@ -66,7 +66,7 @@ public class CategoryControllerMvcTest {
 		long categoryId = 1;
 		when(categoryRepo.findById(categoryId)).thenReturn(Optional.of(category1));
 		
-		mvc.perform(get("/category?id=1")).andExpect(model().attribute("categories", category1));	
+		mvc.perform(get("/category?id=1")).andExpect(model().attribute("category", category1));	
 	}
 	
 	@Test

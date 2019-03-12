@@ -23,6 +23,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.wecancodeit.beveragereviews.models.Category;
 import org.wecancodeit.beveragereviews.models.Review;
 import org.wecancodeit.beveragereviews.repositories.CategoryRepository;
+import org.wecancodeit.beveragereviews.repositories.CommentRepository;
 import org.wecancodeit.beveragereviews.repositories.ReviewRepository;
 import org.wecancodeit.beveragereviews.repositories.TagRepository;
 
@@ -52,6 +53,9 @@ public class ReviewControllerMvcTest {
 	
 	@MockBean
 	private TagRepository tagRepo;
+	
+	@MockBean
+	private CommentRepository commentRepo;
 
 	@Test
 	public void shouldBeOkForSingleReview() throws Exception {
@@ -81,7 +85,7 @@ public class ReviewControllerMvcTest {
 		when(review1.getCategory()).thenReturn(category1);
 		when(reviewRepo.findById(id)).thenReturn(Optional.of(review1));
 		
-		mvc.perform(get("/review?id=1")).andExpect(model().attribute("reviews", review1));
+		mvc.perform(get("/review?id=1")).andExpect(model().attribute("review", review1));
 	}
 	
 	@Test

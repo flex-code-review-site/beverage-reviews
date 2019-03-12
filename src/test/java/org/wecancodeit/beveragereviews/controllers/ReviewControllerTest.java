@@ -14,9 +14,11 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.ui.Model;
 import org.wecancodeit.beveragereviews.models.Category;
+import org.wecancodeit.beveragereviews.models.Comment;
 import org.wecancodeit.beveragereviews.models.Review;
 import org.wecancodeit.beveragereviews.models.Tag;
 import org.wecancodeit.beveragereviews.repositories.CategoryRepository;
+import org.wecancodeit.beveragereviews.repositories.CommentRepository;
 import org.wecancodeit.beveragereviews.repositories.ReviewRepository;
 import org.wecancodeit.beveragereviews.repositories.TagRepository;
 
@@ -42,6 +44,8 @@ public class ReviewControllerTest {
 	
 	@Mock
 	private Review review2;
+	
+	
 	
 	
 	@Before
@@ -77,4 +81,6 @@ public class ReviewControllerTest {
 	    Review cocaCola = new Review(name,description,newCategory,newTag);
 	    when(reviewRepo.save(cocaCola)).thenReturn(cocaCola);
 	}
+	
+	
 }
