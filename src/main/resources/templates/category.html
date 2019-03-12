@@ -7,9 +7,8 @@
 	<a href="/categories">Back To All Categories</a>
 </header>
 <body>
-	
+	<h1 th:text = "${category.name}"> name</h1>
 	<div th:each ="review:${reviews}">
-	    <h1 th:text = "${category.name}"> name</h1>
 		<ul>
 			<li><a th:href="@{/review(id=${review.id})}"th:text="${review.name}"></a></li>
 		</ul>
