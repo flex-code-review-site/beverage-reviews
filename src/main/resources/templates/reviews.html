@@ -17,6 +17,27 @@
 			<a th:href="@{/review(id=${review.id})}" th:text="${review.name}"></a>
 		</li>
 	</div>
+	<form method="POST">
+		<div>
+			<label>Review Name</label>
+			<input type="text" name="name">
+		</div>	
+		<div>
+			<label>Description</label>
+			<input type="text" name="description">
+		</div>
+		<div>
+			<label>Category Name</label>
+			<input type="text" name="categoryName">
+		</div>
+		<div>
+			<label>Tag Name</label>
+			<input type="text" name="tagName">
+		</div>
+		<div>
+			<button th:formaction="@{/add-review}">Add Review</button>
+		</div>
+	</form>
 </body>
 <script type="text/javascript" th:src="@{/js/stickyNav.js}"></script>
 </html>
