@@ -1,43 +1,52 @@
 <!DOCTYPE html>
 <html xmlns: th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+<link href="https://fonts.googleapis.com/css?family=Homemade+Apple" rel="stylesheet">
 <head>
 	<title th:text = "${review.name}"></title>
 </head>
+<div id="navbar">
+	<a class="active" href="http://localhost:8080/reviews">Home</a>
+	<a href="http://localhost:8080/categories">Categories</a>
+	<a href="http://localhost:8080/tags">Tags</a>
+</div>
 <body>
-	    <h1 th:text = "${review.name}"></h1>
-	    <img th:src = "${review.imageAddress}">
-		<p th:text = "${review.description}"></p>
-		<hr></hr>
-		<h2>Category</h2>
-			<a th:href = "@{/category(id=${review.category.id})}"th:text = "${review.category.name}"></a>
-		<hr></hr>
-		<h2>Tags</h2>
-		<div id = "tags" th:each = "tag: ${review.tags}">
-			<a th:href = "@{/tag(id=${tag.id})}" th:text = "${tag.name}"></a>
-		</div>
-		<hr></hr>
-		<h2>Comments</h2>
-	    <div th:each = "comment: ${review.comments}">
-			<p th:text = "${comment.content}"></a>
+	<section id="reviewHeader">
+		<h1 th:text = "${review.name}"></h1>
+	</section>
+	<div id="reviewPicture">
+		<img th:src = "${review.imageAddress}">
+	</div>
+	<p th:text = "${review.description}"></p>
+	<h2>Category</h2>
+	<a th:href = "@{/category(id=${review.category.id})}"th:text = "${review.category.name}"></a>
+	<h2>Tags</h2>
+	<div id = "tags" th:each = "tag: ${review.tags}">
+	<a th:href = "@{/tag(id=${tag.id})}" th:text = "${tag.name}"></a>
+	</div>
+	<h2>Comments</h2>
+	<section id="comments">
+		<div th:each = "comment: ${review.comments}">
+			<a th:text = "${comment.content}"></a>
 			<form method = "POST">
 				<div>
 					<input type = "hidden" name = "commentId" th:value = "${comment.id}"/>
 					<button th:formaction="@{delete-comment}">Delete Comment</button>
 				</div>
 			</form>
-			<br></br>
 		</div>
-		<form method="POST">
-			<div>
-				<label>Enter New Comment:</label>
-				<input type="text" name = "commentContent"/>
-				<input type="hidden" name="reviewName" th:value = "${review.name}"/>
-			</div>
-			<div>
-				<button th:formaction="@{add-comment}" >Submit Comment</button>
-			</div>
-		</form>
-		<hr></hr>
-		<a href="http://localhost:8080/reviews">Home</a>
+	</section>
+	<form method="POST">
+		<div>
+			<label>Enter New Comment:</label>
+			<input type="text" name = "commentContent"/>
+			<input type="hidden" name="reviewName" th:value = "${review.name}"/>
+		</div>
+		<div>
+			<button th:formaction="@{add-comment}" >Submit Comment</button>
+		</div>
+	</form>
 </body>
+<script type="text/javascript" th:src="@{/js/stickyNav.js}"></script>
 </html>
