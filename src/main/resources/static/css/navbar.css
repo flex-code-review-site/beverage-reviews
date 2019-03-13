@@ -1,0 +1,41 @@
+
+#navbar {
+  overflow: hidden;
+  background-color: #333; /*Dark Grey*/
+}
+
+#navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2; /*Grey*/
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+#navbar a:hover {
+  opacity: 0.7;
+  background-color: #fffdd0;  /*Cream*/
+  border-radius: 8px;
+  transition: 1s;
+}
+
+#navbar a.active {
+  background-color: #D2691E;  /*Chocolate*/
+  color: white;
+}
+
+.content {
+  padding: 16px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 60px;
+}

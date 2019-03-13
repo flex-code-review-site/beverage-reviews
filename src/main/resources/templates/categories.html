@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 <head>
-	<title> Categories</title>
+	<title>Categories</title>
 </head>
+<div id="navbar">
+	<a class="active" href="http://localhost:8080/reviews">Home</a>
+	<a href="http://localhost:8080/categories">Categories</a>
+	<a href="http://localhost:8080/tags">Tags</a>
+</div>	
 <body>
-	<h1>Categories</h1>
+	<h1>A list of Categories</h1>
 	<div th:each ="category:${categories}">
 		<h2>
 			<a th:href="@{/category(id=${category.id})}" th:text = "${category.name}"></a>
@@ -13,7 +20,7 @@
 			<a th:href="@{/review(id=${review.id})}" th:text = "${review.name}">	
 			</a>
 		</div>
-	</div>	
-				
+	</div>					
 </body>
+<script type="text/javascript" th:src="@{/js/stickyNav.js}"></script>
 </html>
