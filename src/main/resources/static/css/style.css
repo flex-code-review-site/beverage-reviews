@@ -1,0 +1,48 @@
+<style>
+@import url('https://fonts.googleapis.com/css?family=Homemade+Apple');
+</style>
+/*
+font-family: 'Yellowtail', cursive;
+font-family: 'Homemade Apple', cursive;
+*/
+
+body {
+	background-color: #fffdd0; /*Cream*/
+} /*All pages*/
+
+/*.mainReview {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}*/
+
+#reviewHeader h1{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: 'Homemade Apple', cursive;
+	font-size: 150%;
+}
+
+#reviewPicture {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#reviewPicture img {
+	border-radius: 50%;
+	border: 1px solid #D2691E; /*Chocolate*/
+  	padding: 5px;
+  	width: 500px;
+} /*review.html*/
+
+#comments {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#comments a {
+	font-family: cursive;
+}

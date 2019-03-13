@@ -1,17 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html xmlns: th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 <head>
-	<title>One Category</title>
-</head>
-<header>
-	<a href="/categories">Back To All Categories</a>
-</header>
+	<title th:text = "${category.name}"></title>
+</head> 
+<div id="navbar">
+    <a class="active" href="http://localhost:8080/reviews">Home</a>
+    <a href="http://localhost:8080/categories">Categories</a>
+    <a href="http://localhost:8080/tags">Tags</a>
+</div> 
 <body>
-	<h1 th:text = "${category.name}"> name</h1>
+	<h1 th:text = "${category.name}"></h1>
 	<div th:each ="review:${reviews}">
 		<ul>
-			<li><a th:href="@{/review(id=${review.id})}"th:text="${review.name}"></a></li>
+			<li>
+				<a th:href="@{/review(id=${review.id})}"th:text="${review.name}"></a>
+			</li>
 		</ul>
 	</div>
 </body>
+<script type="text/javascript" th:src="@{/js/stickyNav.js}"></script>
 </html>

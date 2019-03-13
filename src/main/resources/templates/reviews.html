@@ -1,18 +1,23 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 <head>
-	<title>Reviews</title>
+	<title>Home</title>
 </head>
+<div id="navbar">
+	<a class="active" href="http://localhost:8080/reviews">Home</a>
+	<a href="http://localhost:8080/categories">Categories</a>
+	<a href="http://localhost:8080/tags">Tags</a>
+</div>	
 <body>
 	<h1>A list of Reviews</h1>
-
 	<div th:each="review: ${reviews}">
 		<li>
 			<a th:href="@{/review(id=${review.id})}" th:text="${review.name}"></a>
 		</li>
 	</div>
-
 </body>
+<script type="text/javascript" th:src="@{/js/stickyNav.js}"></script>
 </html>
 
