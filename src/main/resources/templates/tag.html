@@ -13,12 +13,10 @@
     <a href="http://localhost:8080/tags">Tags</a>
 </div>  
 <body>
-    <div th:each ="tag:${tags}">
         <h1 th:text ="${tag.name}"></h1>
-        <div class="listOfReviewsForTag" th:each ="review: ${tags.reviews}">
+        <div class="listOfReviewsForTag" th:each ="review: ${tag.reviews}">
             <p><a th:text ="${review.name}" th:href="@{/review(id=${review.id})}"></a></p>
         </div>
-    </div>
 </body>
 <script type="text/javascript" th:src="@{/js/stickyNav.js}"></script>
 </html>

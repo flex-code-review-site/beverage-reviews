@@ -3,7 +3,7 @@
 <link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}">
 <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 <head>
-	<title>All Tags</title>
+	<title></title>
 </head>
 <div id="navbar">
 	<a class="active" href="http://localhost:8080/reviews">Home</a>
@@ -11,12 +11,25 @@
 	<a href="http://localhost:8080/tags">Tags</a>
 </div>
 <body>
-	<h1>A list of Tags</h1>
-	<wrapper class="content">
-		<div th:each ="tag:${tags}">
-			<a th:text ="${tag.name}" th:href="@{/tag(id=${tag.id})}"></a> 
-		</div>
-	</wrapper>
+	<section class = "tags-list">
+	    <h2> Current Tags </h2>
+		<ul style = "padding:0px">
+		    <li style = "list-style-type:none" th:if = "${tags.size() == 0}"> 
+		        Currently there are no tags to display! 
+		    </li>
+			<li style = "list-style-type:none" if = "${tags.size() != 0}" th:each ="tag:${tags}">
+				<a th:text ="${tag.name}" th:href="@{/tag(id=${tag.id})}"></a> 
+			</li>
+		</ul>
+	</section>
+	
+	<section class = "add-tag">
+	    <h2>Add Tag</h2>
+		<input type = "text" placeholder = "tag name">
+		<button> Submit Tag </button>
+	</section> 
+	
 </body>
 <script type="text/javascript" th:src="@{/js/stickyNav.js}"></script>
+<script type="text/javascript" th:src="@{/js/add-tag-ajax.js}"></script>
 </html>

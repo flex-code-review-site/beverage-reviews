@@ -6,7 +6,9 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.wecancodeit.beveragereviews.models.Review;
 import org.wecancodeit.beveragereviews.models.Tag;
@@ -32,7 +34,7 @@ public class TagController {
 	public String findOneTag(@RequestParam(value = "id") Long id, Model model) throws TagNotFoundException {
 		Optional<Tag> tag = tagRepo.findById(id);
 		if (tag.isPresent()) {
-			model.addAttribute("tags", tag.get());
+			model.addAttribute("tag", tag.get());
 			return "tag";
 		}
 		throw new TagNotFoundException();
@@ -51,5 +53,20 @@ public class TagController {
 		}
 		return "redirect:/review?id=" + reviewId;
 	}
+	
+	@RequestMapping(path = "/tags/{name}", method = RequestMethod.POST)
+	public String addTag(@PathVariable String name , Model model )
+	{
+     Tag newTag = tagRepo.findByName(name);
+     
+     if(newTag == null) {
+    	 newTag = tagRepo.save(new Tag(name));
+     }
+     
+	 model.addAttribute("tags", tagRepo.findAll());
+	 
+     return "partials/tags-list-added/";
+	}
+	
 
 }
