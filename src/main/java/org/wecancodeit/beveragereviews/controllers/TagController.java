@@ -8,17 +8,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.wecancodeit.beveragereviews.models.Review;
 import org.wecancodeit.beveragereviews.models.Tag;
+import org.wecancodeit.beveragereviews.repositories.ReviewRepository;
 import org.wecancodeit.beveragereviews.repositories.TagRepository;
 
 @Controller
 public class TagController {
-	
-    @Resource
+
+	@Resource
 	private TagRepository tagRepo;
-    
-    
-    @RequestMapping("/tags")
+
+	@Resource
+	private ReviewRepository reviewRepo;
+
+	@RequestMapping("/tags")
 	public String findAllTags(Model model) {
 		model.addAttribute("tags", tagRepo.findAll());
 		return "tags";
@@ -32,7 +36,20 @@ public class TagController {
 			return "tag";
 		}
 		throw new TagNotFoundException();
+	}
 
+	@RequestMapping("/add-tag")
+	public String addTag(String tagName, Long reviewId) {
+		Optional<Review> review = reviewRepo.findById(reviewId);
+		Tag tag = tagRepo.findByNameIgnoreCase(tagName);
+		if (tag == null) {
+			tag = tagRepo.save(new Tag(tagName));
+		}
+		if (review.isPresent()) {
+			review.get().addTag(tag);
+			reviewRepo.save(review.get());
+		}
+		return "redirect:/review?id=" + reviewId;
 	}
 
 }
