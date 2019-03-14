@@ -240,4 +240,23 @@ public class JpaMappingsTest {
 		
 	
 	}
+	@Test
+	public void shouldAddATagToAReviewAndRetrieveAllTagsByReviewId() {
+		Category nonAlcoholic = new Category("Non-Alcoholic");
+		categoryRepo.save(nonAlcoholic);
+		Review coffee = new Review("Coffee", "Black as my soul", nonAlcoholic, "Image Address");
+		reviewRepo.save(coffee);
+		Long coffeeId = coffee.getId();
+		Tag hot = new Tag("hot");
+		tagRepo.save(hot);
+		coffee.addTag(hot);
+		
+		
+		entityManager.flush();
+		entityManager.clear();
+		
+		Review review = reviewRepo.findById(coffeeId).get();
+		assertThat(review.getTags(),containsInAnyOrder(hot));
+		
+	}
 }

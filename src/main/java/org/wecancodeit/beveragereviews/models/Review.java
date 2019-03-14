@@ -24,7 +24,7 @@ public class Review {
 	@ManyToMany
 	private Collection<Tag> tags;
 	private String imageAddress;
-	@OneToMany(mappedBy= "review")
+	@OneToMany(mappedBy = "review")
 	private Collection<Comment> comments;
 
 	public Long getId() {
@@ -46,10 +46,12 @@ public class Review {
 	public Collection<Tag> getTags() {
 		return tags;
 	}
+
 	public String getImageAddress() {
-		
+
 		return imageAddress;
 	}
+
 	public Collection<Comment> getComments() {
 		return comments;
 	}
@@ -71,6 +73,18 @@ public class Review {
 		this.category = category;
 		this.imageAddress = imageAddress;
 		this.tags = new HashSet<>(Arrays.asList(tags));
+	}
+
+	public void addTag(Tag tag) {
+		Boolean tagExists = false;
+		for (Tag existingTag : tags) {
+			if (existingTag.getName().equalsIgnoreCase(tag.getName())) {
+				tagExists = true;
+			}
+		}
+		if (tagExists == false) {
+			tags.add(tag);
+		}
 	}
 
 	@Override
@@ -97,7 +111,5 @@ public class Review {
 			return false;
 		return true;
 	}
-
-
 
 }

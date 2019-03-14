@@ -7,4 +7,6 @@ public interface TagRepository extends CrudRepository<Tag, Long> {
 
 	Tag findByName(String tag);
 
+	Tag findByNameIgnoreCase(String tagName);
+
 }
