@@ -26,12 +26,13 @@
 	<a th:href = "@{/tag(id=${tag.id})}" th:text = "${tag.name}"></a>
 	</div>
 	<form method="POST">
-		<div>
+		<div class = "tag-submit">
 			<label>Enter New Tag:</label>
 			<input type="text" name = "tagName"/>
 		</div>
-		<div>
-			<button th:formaction="@{add-tag}" name="reviewId" th:value="${review.id}">Submit Tag</button>
+		<button type = "button" id="tag-button">Add a New Tag</button>
+		<div class = "tag-submit">
+			<button  th:formaction="@{add-tag}" name="reviewId" th:value="${review.id}">Submit Tag</button>
 		</div>
 	</form>
 	<h2>Comments</h2>
@@ -57,5 +58,6 @@
 		</div>
 	</form>
 </body>
+<script type="text/javascript" th:src="@{/js/add-tag.js}"></script>
 <script type="text/javascript" th:src="@{/js/stickyNav.js}"></script>
 </html>
