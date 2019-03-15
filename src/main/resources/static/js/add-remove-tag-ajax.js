@@ -3,7 +3,6 @@
 const submitTagButton = document.querySelector(".add-tag button");
 const submitTagInput = document.querySelector(".add-tag input");
 const tagsList = document.querySelector (".tags-list");
-const tagsListUL = tagsList.querySelector("ul");
 
 const xhr = new XMLHttpRequest();
 xhr.onreadystatechange = function(){
@@ -30,7 +29,7 @@ function submitTag(name){
 	xhr.send();
 }
 
-tagsListUL.addEventListener("click", function(event){
+tagsList.addEventListener("click", function(event){
   let id = event.target.previousElementSibling.previousElementSibling.value;
   submitRemoveTag(id);
   console.log(id);
