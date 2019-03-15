@@ -30,9 +30,11 @@ function submitTag(name){
 }
 
 tagsList.addEventListener("click", function(event){
+  if(event.target.classList.contains("x")){
   let id = event.target.previousElementSibling.previousElementSibling.value;
   submitRemoveTag(id);
   console.log(id);
+  }
 })
 
 function submitRemoveTag(id){
