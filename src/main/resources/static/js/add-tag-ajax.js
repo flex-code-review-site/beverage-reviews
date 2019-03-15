@@ -6,8 +6,7 @@ const tagsList = document.querySelector(".tags-list ul");
 
 const xhr = new XMLHttpRequest;
 xhr.onreadystatechange = function(){
-  if(xhr.readystate === 4 && xhr.status === 200)
-  {
+  if(xhr.readystate === 4 && xhr.status === 200){
     const res = xhr.responseText;
     tagsList.innerHTML = res;
   }
