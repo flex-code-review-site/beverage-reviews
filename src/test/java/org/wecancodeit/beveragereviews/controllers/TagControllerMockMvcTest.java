@@ -78,7 +78,7 @@ public class TagControllerMockMvcTest {
 		long tagId = 1;
 		when(tagRepo.findById(tagId)).thenReturn(Optional.of(hot));
 
-		mvc.perform(get("/tag?id=1")).andExpect(model().attribute("tags", hot));
+		mvc.perform(get("/tag?id=1")).andExpect(model().attribute("tag", hot));
 	}
 
 	@Test

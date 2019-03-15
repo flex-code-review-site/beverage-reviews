@@ -65,7 +65,7 @@ public class TagsControllerTest {
 		when(tagRepo.findById(arbitraryTagId)).thenReturn(Optional.of(tag));
 
 		underTest.findOneTag(arbitraryTagId, model);
-		verify(model).addAttribute("tags", tag);
+		verify(model).addAttribute("tag", tag);
 	}
 
 	@Test
@@ -73,5 +73,5 @@ public class TagsControllerTest {
 		when(reviewRepo.findById(1L)).thenReturn(Optional.of(review));
 		underTest.addTag("tag name", 1L);
 	}
-
+	
 }
