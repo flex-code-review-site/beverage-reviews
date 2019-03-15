@@ -12,7 +12,7 @@ xhr.onreadystatechange = function(){
   }
 }
 
-submitTagButton.addEventListenter("click",addTag());
+submitTagButton.addEventListener("click",addTag);
 
  
 function addTag() {  
