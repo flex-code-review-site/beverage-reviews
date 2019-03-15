@@ -112,4 +112,9 @@ public class Review {
 		return true;
 	}
 
+	public Review removeTag(Tag tagToRemove) {
+		tags.remove(tagToRemove);
+		return this;
+	}
+
 }

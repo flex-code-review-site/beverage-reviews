@@ -3,6 +3,7 @@
 const submitTagButton = document.querySelector(".add-tag button");
 const submitTagInput = document.querySelector(".add-tag input");
 const tagsList = document.querySelector (".tags-list");
+const tagsListUL = tagsList.querySelector("ul");
 
 const xhr = new XMLHttpRequest();
 xhr.onreadystatechange = function(){
@@ -14,15 +15,28 @@ xhr.onreadystatechange = function(){
 
 submitTagButton.addEventListener("click",addTag);
 
- 
 function addTag() {  
+  if(submitTagInput.value != "")
+  {
     submitTag(submitTagInput.value);
     console.log(submitTagInput.value);
     submitTagInput.value = "";
+  }
 } 
  
   
 function submitTag(name){
 	xhr.open("POST","/tags/" + name, true);
+	xhr.send();
+}
+
+tagsListUL.addEventListener("click", function(event){
+  let id = event.target.previousElementSibling.previousElementSibling.value;
+  submitRemoveTag(id);
+  console.log(id);
+})
+
+function submitRemoveTag(id){
+    xhr.open("POST","/tags/remove/" + id, true);
 	xhr.send();
 }

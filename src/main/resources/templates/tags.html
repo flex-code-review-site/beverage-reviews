@@ -18,19 +18,21 @@
 		        Currently there are no tags to display! 
 		    </li>
 			<li style = "list-style-type:none" if = "${tags.size() != 0}" th:each ="tag:${tags}">
-				<a th:text ="${tag.name}" th:href="@{/tag(id=${tag.id})}"></a> 
+			    <input class = "id" name = "id" type = "hidden" th:value = "${tag.id}"/>
+				<a th:text ="${tag.name}" th:href="@{/tag(id=${tag.id})}"></a>
+				<button class = "x" >&times;</button>
 			</li>
 		</ul>
 	</section>
 	
 	<section class = "add-tag">
 	    <h2>Add Tag</h2>
-		<input type = "text" placeholder = "tag name">
+		<input type = "text" placeholder = "tag name"/>
 		<button> Submit Tag </button>
 	</section> 
 	
 	
 </body>
 <script type="text/javascript" th:src="@{/js/stickyNav.js}"></script>
-<script type="text/javascript" th:src="@{/js/add-tag-ajax.js}"></script>
+<script type="text/javascript" th:src="@{/js/add-remove-tag-ajax.js}"></script>
 </html>

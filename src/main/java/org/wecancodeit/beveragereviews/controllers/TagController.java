@@ -68,5 +68,22 @@ public class TagController {
      return "partials/tags-list-added";
 	}
 	
+	@RequestMapping(path = "/tags/remove/{id}", method = RequestMethod.POST)
+	public String removeTag(@PathVariable Long id , Model model )
+	{
+     Optional<Tag> tagToRemoveResult = tagRepo.findById(id);
+     Tag tagToRemove = tagToRemoveResult.get();
+     
+     for(Review review:tagToRemove.getReviews()) {
+        reviewRepo.save(review.removeTag(tagToRemove));
+     }
+     
+     tagRepo.delete(tagToRemove);
+     
+	 model.addAttribute("tags", tagRepo.findAll());
+	 
+     return "partials/tags-list-removed";
+	}
+	
 
 }

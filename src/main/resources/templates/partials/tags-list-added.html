@@ -7,7 +7,9 @@
 		        Currently there are no tags to display! 
 		    </li>
 			<li style = "list-style-type:none" if = "${tags.size() != 0}" th:each ="tag:${tags}">
-				<a th:text ="${tag.name}" th:href="@{/tag(id=${tag.id})}"></a> 
+			    <input class = "id" name = "id" type = "hidden" th:value = "${tag.id}"/>
+				<a th:text ="${tag.name}" th:href="@{/tag(id=${tag.id})}"></a>
+				<button class = "x" >&times;</button>
 			</li>
 		</ul>
 </section>
