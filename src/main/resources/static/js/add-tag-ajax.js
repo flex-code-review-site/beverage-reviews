@@ -24,6 +24,6 @@ function addTag() {
  
   
 function submitTag(name){
-	xhr.open("POST","/topics/" + name, true);
+	xhr.open("POST","/tags/" + name, true);
 	xhr.send();
 }

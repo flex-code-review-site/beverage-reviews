@@ -65,7 +65,7 @@ public class TagController {
      
 	 model.addAttribute("tags", tagRepo.findAll());
 	 
-     return "partials/tags-list-added/";
+     return "partials/tags-list-added";
 	}
 	
 
