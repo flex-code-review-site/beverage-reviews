@@ -1,20 +1,18 @@
-<style>
+
 @import url('https://fonts.googleapis.com/css?family=Homemade+Apple');
-</style>
-/*
-font-family: 'Yellowtail', cursive;
-font-family: 'Homemade Apple', cursive;
-*/
 
 body {
-	background-color: #fffdd0; /*Cream*/
-} /*All pages*/
+    display:flex;
+    flex-direction:column;
+	background-color:white; 
+	margin:0px;
+} 
 
-/*.mainReview {
+.mainReview {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-}*/
+}
 
 #reviewHeader h1{
 	display: flex;
@@ -37,12 +35,82 @@ body {
   	width: 500px;
 } /*review.html*/
 
+#container{
+    width:80%;
+    align-self:center;
+}
+
+
+#tag-button{
+    margin-top:20px;
+}
+
+.tags-list ul li{
+   display:flex;
+   padding:10px 0px;
+}
+
+.tag-link{
+   width:160px;
+}
+
+
+.x{
+   border-radius:50%;
+   border-style:none;
+}
+
+
 #comments {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+   display: flex;
+   flex-direction:column;
+   justify-content: center;
+}
+
+#comments h2{
+   margin-bottom:0px;
 }
 
 #comments a {
-	font-family: cursive;
+   font-family: cursive;
 }
+
+#add-comment{
+   display:flex;
+   flex-direction:column;
+   justify-content:center;
+}
+
+#add-comment{
+   width:100%;
+}
+
+#add-comment #comment-box-div{
+   display:flex;
+   flex-direction:column;
+}
+#comment-box-div{
+   display:flex;
+   align-self:center;
+   width:100%;
+   margin-top:20px;
+}
+
+#comment-box{
+ 
+  height:5em;
+  margin:0px;
+  
+}
+
+li{
+  list-style-type:none;
+}
+
+ul{
+  padding:0px;
+ }
+
+
+
+

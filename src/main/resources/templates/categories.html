@@ -5,12 +5,8 @@
 <head>
 	<title>Categories</title>
 </head>
-<div id="navbar">
-	<a class="active" href="http://localhost:8080/reviews">Home</a>
-	<a href="http://localhost:8080/categories">Categories</a>
-	<a href="http://localhost:8080/tags">Tags</a>
-</div>	
 <body>
+    <div class = "navbar"><h1 id = "beverages">Beverages</h1><nav id="navbar"></nav></div>
 	<h1>A list of Categories</h1>
 	<div th:each ="category:${categories}">
 		<h2>
