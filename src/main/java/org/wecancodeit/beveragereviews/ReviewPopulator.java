@@ -49,15 +49,15 @@ public class ReviewPopulator implements CommandLineRunner {
 		wine = reviewRepo.save(wine);
 
 		Comment comment1 = new Comment(
-				"tasted burnt Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum",
+				"tasted burnt",
 				coffee);
 		commentRepo.save(comment1);
 		Comment comment2 = new Comment(
-				"nice and hot dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+				"nice and hot",
 				coffee);
 		commentRepo.save(comment2);
 		Comment comment3 = new Comment(
-				"less caffine sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
+				"less caffeine",
 				tea);
 		commentRepo.save(comment3);
 

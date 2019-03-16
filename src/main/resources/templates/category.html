@@ -5,20 +5,16 @@
 <head>
 	<title th:text = "${category.name}"></title>
 </head> 
-<div id="navbar">
-    <a class="active" href="http://localhost:8080/reviews">Home</a>
-    <a href="http://localhost:8080/categories">Categories</a>
-    <a href="http://localhost:8080/tags">Tags</a>
-</div> 
 <body>
-	<h1 th:text = "${category.name}"></h1>
-	<div th:each ="review:${reviews}">
-		<ul>
-			<li>
-				<a th:href="@{/review(id=${review.id})}"th:text="${review.name}"></a>
-			</li>
-		</ul>
-	</div>
+    <div class = "navbar"><h1 id = "beverages">Beverages</h1><nav id="navbar"></nav></div>
+		<h1 th:text = "${category.name}"></h1>
+		<div th:each ="review:${reviews}">
+			<ul>
+				<li>
+					<a th:href="@{/review(id=${review.id})}"th:text="${review.name}"></a>
+				</li>
+			</ul>
+		</div>
 </body>
 <script type="text/javascript" th:src="@{/js/stickyNav.js}"></script>
 </html>
