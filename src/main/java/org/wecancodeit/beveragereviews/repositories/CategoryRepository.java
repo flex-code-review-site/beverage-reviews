@@ -7,4 +7,6 @@ public interface CategoryRepository extends CrudRepository<Category, Long> {
 
 	Category findByName(String category);
 
+	Category findByNameIgnoreCase(String categoryName);
+
 }

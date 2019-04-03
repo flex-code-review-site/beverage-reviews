@@ -3,20 +3,45 @@
 <link rel="stylesheet" type="text/css" th:href="@{/css/navbar.css}">
 <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 <head>
-	<title>Categories</title>
+<title>Categories</title>
 </head>
 <body>
-    <div class = "navbar"><h1 id = "beverages">Beverages</h1><nav id="navbar"></nav></div>
+	<div class="navbar">
+		<h1 id="beverages">Beverages</h1>
+		<nav id="navbar"></nav>
+	</div>
 	<h1>A list of Categories</h1>
-	<div th:each ="category:${categories}">
+	<div th:each="category:${categories}">
 		<h2>
-			<a th:href="@{/category(id=${category.id})}" th:text = "${category.name}"></a>
+			<a th:href="@{/category(id=${category.id})}"
+				th:text="${category.name}"></a>
 		</h2>
-		<div th:each ="review:${category.reviews}">
-			<a th:href="@{/review(id=${review.id})}" th:text = "${review.name}">	
+		<div th:each="review:${category.reviews}">
+			<a th:href="@{/review(id=${review.id})}" th:text="${review.name}">
 			</a>
 		</div>
-	</div>					
+	</div>
+	<section class = "categories-list">
+	    <h2> Current Categories </h2>
+		<ul style = "padding:0px">
+		    <li style = "list-style-type:none" th:if = "${categories.size() == 0}"> 
+		        Currently there are no categories to display! 
+		    </li>
+			<li style = "list-style-type:none" if = "${categories.size() != 0}" th:each ="category:${categories}">
+			    <input class = "id" name = "id" type = "hidden" th:value = "${category.id}"/>
+				<div  class = "category-link"><a th:text ="${category.name}" th:href="@{/category(id=${category.id})}"></a></div>
+				<button class = "x" >&times;</button>
+			</li>
+		</ul>
+	</section>
+
+	<section class="add-category">
+		<h2>Add Tag</h2>
+		<input type="text" placeholder="category name" />
+		<button>Submit Tag</button>
+	</section>
 </body>
 <script type="text/javascript" th:src="@{/js/stickyNav.js}"></script>
+<script type="text/javascript"
+	th:src="@{/js/add-remove-category-ajax.js}"></script>
 </html>

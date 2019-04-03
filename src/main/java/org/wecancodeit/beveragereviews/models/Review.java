@@ -26,6 +26,7 @@ public class Review {
 	private String imageAddress;
 	@OneToMany(mappedBy = "review")
 	private Collection<Comment> comments;
+	private Collection<Tag> categories;
 
 	public Long getId() {
 		return id;
@@ -114,6 +115,13 @@ public class Review {
 
 	public Review removeTag(Tag tagToRemove) {
 		tags.remove(tagToRemove);
+		return this;
+	}
+	
+
+	@SuppressWarnings("unlikely-arg-type")
+	public Review removeCategory(Category categoryToRemove) {
+		categories.remove(categoryToRemove);
 		return this;
 	}
 
